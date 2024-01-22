@@ -15,11 +15,21 @@ import LoginButton from "components/LoginButton";
 import ButtonLink from "components/ButtonLink";
 import SubLabel from "components/SubLabel";
 import { useRouter } from "expo-router";
+import { useAppDispatch } from "store/store";
+import { login } from "store/reducers/account/account.actions";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useNavigation } from "expo-router";
 
 const Login = () =>{
 
     const router = useRouter();
+    const navigation = useNavigation();
+    const { reset } = navigation;
 
+    const appDispatch = useAppDispatch();
+
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
     const [rememberMe, setRememberMe] = useState<boolean>(true);
 
     const handleForgotPasswordClick = () =>{
@@ -30,6 +40,27 @@ const Login = () =>{
 
     const handleLoginBtnClicked = () =>{
 
+
+        appDispatch(login({email, password}))
+        .then(unwrapResult)
+        .then(()=>{
+            
+
+          
+            navigation.reset({
+                index: 0,
+                  //@ts-ignore
+                routes: [{ name: '(tabs)' }],
+              });
+
+           
+    
+
+        })
+        .catch(err =>{
+
+            //handle err
+        })
 
     }
 
@@ -63,8 +94,8 @@ const Login = () =>{
                 <FlexableSpace/>
              </Horizontal>
 
-             <EmailInputField />
-             <PasswordInputField/>
+             <EmailInputField value={email} onChangeText={setEmail} />
+             <PasswordInputField value={password} onChangeText={setPassword}/>
 
              <Horizontal>
                
@@ -85,7 +116,7 @@ const Login = () =>{
 
              <Horizontal>
                 <FlexableSpace/>
-                <LoginButton text="Login"/>
+                <LoginButton text="Login" onPress={handleLoginBtnClicked}/>
                 <FlexableSpace/>
              </Horizontal>
 

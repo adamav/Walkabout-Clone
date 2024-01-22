@@ -10,6 +10,9 @@ import Label from 'components/Label';
 import BackArrowBtn from 'components/BackArrowBtn/BackArrowBtn';
 import SubHeaderLabel from 'components/SubHeaderLabel';
 import Container from 'components/Container/Container';
+import { Provider } from 'react-redux';
+import store from 'store/store';
+
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -56,18 +59,11 @@ function RootLayoutNav() {
   const router = useRouter();
 
 
-  useEffect(()=>{
-
-    //not signed in redirect to landing
-
-    router.replace('/landing')
-
-
-  },[])
 
 
 
   return (
+    <Provider store={store}>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack screenOptions={{
 
@@ -112,9 +108,23 @@ function RootLayoutNav() {
           headerTitle: () => <SubHeaderLabel text='Walkabout' style={{color:'#e12f85'}} />
         }}/>
         <Stack.Screen name='forgot-password' />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{
+          headerShown:false,
+          contentStyle:{
+            padding:0,
+           
+           
+           
+            
+           
+          
+            
+          },
+
+        }}/>
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
+    </Provider>
   );
 }

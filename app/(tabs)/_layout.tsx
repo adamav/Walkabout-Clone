@@ -1,8 +1,17 @@
+
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable, useColorScheme } from 'react-native';
+import { useSelector } from 'react-redux';
+import { getLoginDetails } from 'store/reducers/account/account.selectors';
+import { useRouter, useFocusEffect } from 'expo-router';
 
 import Colors from '../../constants/Colors';
+import BackArrowBtn from 'components/BackArrowBtn/BackArrowBtn';
+import Label from 'components/Label';
+import Container from 'components/Container/Container';
+import { SimpleLineIcons, AntDesign } from '@expo/vector-icons';
+import Horizontal from 'components/Horizontal';
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -17,30 +26,111 @@ function TabBarIcon(props: {
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
+  const router = useRouter();
+
+  const {isLoggedIn} = useSelector(getLoginDetails);
+  
+  useFocusEffect(() =>{
+
+    if(!isLoggedIn)
+    router.replace('/landing')
+  })
+
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: "black",
+        headerLeft: () => 
+        
+          <Container style={{
+
+           
+              backgroundColor:'#f3f7f8',
+              borderRadius:200,
+              padding:10,
+             
+           
+          }}>
+
+            <Label 
+              text='15,000 Points' 
+              style={{
+               
+                color:'#266acd',
+                fontWeight:'bold',
+                fontSize:10
+              }} 
+            />
+            
+          </Container>,
+
+
+        headerTitle:(props) => <Label text='Walkabout' style={{
+
+          color:'#e12f85',
+          fontWeight:'bold',
+          fontSize:20
+        }}/>,
+
+        headerRight:(props) =>{
+
+          return (
+
+            <Horizontal>
+            <Container style={{
+              backgroundColor:'#f3f7f8',
+              padding:7,
+              borderRadius:50,
+              marginHorizontal:2,
+            }}>
+
+              <SimpleLineIcons 
+              name='bell' 
+              size={20} 
+              />
+
+             
+
+            </Container>
+            <Container style={{
+                backgroundColor:'#4d3f96',
+                padding:10,
+                borderRadius:50,
+                marginHorizontal:2,
+              }}>
+
+                <Label text='TT' style={{color:'black'}}/>
+
+              </Container>
+            </Horizontal>
+           
+          );
+          
+        },
+
+        headerShadowVisible:false,
+
+        
+        
+
+       
+
+      
+
+       
+      
+        
+        
+        
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          title: 'Home',
+          tabBarIcon: ({ color }) => <AntDesign name="home" size={25}  />,
+          
+          
         }}
       />
       <Tabs.Screen

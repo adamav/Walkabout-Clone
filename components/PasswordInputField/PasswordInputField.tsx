@@ -6,10 +6,11 @@ import Horizontal from "components/Horizontal";
 import FlexableSpace from "components/FlexableSpace";
 import Vertical from "components/Vertical";
 import ShowPasswordToggle from "components/ShowPasswordToggle";
+import Label from "components/Label";
+import { InputFieldInterface } from "components/InputField/InputField.interface";
 
 
-
-const PasswordInputField = (props : any) =>{
+const PasswordInputField : React.FC<InputFieldInterface> = (props) =>{
 
 
     const [showPassword, setShowPassword] = useState(false);
@@ -21,10 +22,30 @@ const PasswordInputField = (props : any) =>{
 
     return (
 
+    
 
-        <Container>
 
-            <InputField placeholder="Password" secureTextEntry={showPassword} />
+        <Container
+            style={{
+                marginTop:10,
+                marginBottom:10
+            }}
+        >
+
+            <Label 
+                text="Password" 
+                style={{
+                    fontSize:10,
+                    color:'#757c84',
+                }} 
+            />
+           
+            <InputField  secureTextEntry={showPassword} style={{
+
+                borderBottomWidth:1,
+                height:35,
+                borderBottomColor:'#e1e8f0'
+            }} />
 
             <Overlay>
                 

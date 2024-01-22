@@ -1,8 +1,9 @@
+import { ImageProps } from "react-native";
 
 
-export interface ImageInterface {
+export interface ImageInterface extends ImageProps {
 
-    source?: any;
+   
 
     
     

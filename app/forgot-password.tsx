@@ -32,7 +32,8 @@ const ForgotPassword = () =>{
             <Label 
             text="Enter the email address associated with your account and we'll send instructions to reset your password."
             style={{
-                color:'black'
+                color:'black',
+                marginBottom:20
             }}
             />
 
@@ -45,7 +46,8 @@ const ForgotPassword = () =>{
                     padding:10,
                     marginRight:"auto",
                     minWidth:150,
-                    opacity: validEmailedEntered ? 1 : 0.2
+                    opacity: validEmailedEntered ? 1 : 0.2,
+                    marginTop:20
                     }} 
                 textStyle={{
 

@@ -1,31 +1,70 @@
-import { StyleSheet } from 'react-native';
+import React from "react";
+import Container from "components/Container/Container";
+import SearchInputField from "components/SearchInputField";
+import ButtonText from "components/ButtonText";
+import ScrollView from "components/ScrollView/ScrollView";
+import { useWindowDimensions } from "react-native";
+import Card from "components/Card";
 
-import EditScreenInfo from '../../components/EditScreenInfo';
-import { Text, View } from '../../components/Themed';
 
-export default function TabOneScreen() {
+export const Home = () =>{
+
+  const {width} = useWindowDimensions();
+
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    
+    <Container height="100%" backgroundColor="white">
+
+     
+      <SearchInputField />
+
+      <ButtonText text="More" textStyle={{
+      
+        color:'#266acd',
+        fontWeight:'bold',
+        marginLeft:'auto',
+        marginRight:10
+      }} />
+
+
+       
+        <ScrollView 
+          
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={width}
+          snapToAlignment="start"
+          decelerationRate='fast'
+          
+         
+         >
+
+           
+          
+          
+
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+
+
+        
+        
+         
+        
+        
+      </ScrollView>
+     
+     
+       
+
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+export default Home;
+
+
