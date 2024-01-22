@@ -20,7 +20,8 @@ const Card = () =>{
         <Container 
         style={{
 
-           width:width,
+           width:width +5,
+           paddingRight:5
         
          
 

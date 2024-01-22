@@ -5,6 +5,8 @@ import ButtonText from "components/ButtonText";
 import ScrollView from "components/ScrollView/ScrollView";
 import { useWindowDimensions } from "react-native";
 import Card from "components/Card";
+import Horizontal from "components/Horizontal";
+import FlexableSpace from "components/FlexableSpace";
 
 
 export const Home = () =>{
@@ -28,14 +30,15 @@ export const Home = () =>{
       }} />
 
 
-       
+       <Container>
         <ScrollView 
           
           horizontal
           showsHorizontalScrollIndicator={false}
-          snapToInterval={width}
+          snapToInterval={width + 5}
           snapToAlignment="start"
           decelerationRate='fast'
+
       
           
           
@@ -59,7 +62,25 @@ export const Home = () =>{
         
         
       </ScrollView>
-     
+      </Container>
+
+      {/* <Container >
+        <Horizontal>
+          <FlexableSpace/>
+       {Array.from({length:5},(_, index) =>{
+
+        return <Container key={index} style={{
+          backgroundColor:'black',
+          height:5,
+          width:5,
+          borderRadius:50,
+          margin:5
+        }}/>
+       })}
+        <FlexableSpace/>
+      </Horizontal>
+      </Container>
+      */}
      
        
 
