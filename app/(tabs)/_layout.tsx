@@ -12,7 +12,8 @@ import Label from 'components/Label';
 import Container from 'components/Container/Container';
 import { SimpleLineIcons, AntDesign } from '@expo/vector-icons';
 import Horizontal from 'components/Horizontal';
-
+import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
@@ -134,10 +135,59 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="support"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Support',
+          tabBarIcon: ({ color }) => <MaterialIcons name="support-agent" size={25} />,
+          
+        }}
+      />
+
+    <Tabs.Screen
+        name="walkabout"
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <Container 
+            style={{
+              backgroundColor:'white',
+              borderColor:'black',
+              borderWidth:1,
+              borderRadius:50,
+              height:50,
+              width:50,
+              alignItems:'center',
+              justifyContent:'center',
+              top:-10
+             
+            }}>
+              <Label 
+              text='W' 
+              style={{
+                color:'#e12f85',
+                fontWeight:'bold',
+                fontSize:30,
+               
+                
+                
+              }}
+              />
+            </Container>,
+        }}
+      />
+
+      <Tabs.Screen
+        name="chat"
+        options={{
+          title: 'Chat',
+          tabBarIcon: ({ color }) => <AntDesign name="message1" size={20} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="my-stuff"
+        options={{
+          title: 'My Stuff',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="safe" size={20} />,
         }}
       />
     </Tabs>

@@ -21,8 +21,8 @@ const Card = () =>{
         style={{
 
            width:width,
-          
-          
+        
+         
 
          
           
@@ -32,8 +32,9 @@ const Card = () =>{
          <Container 
            style={{
              width:'100%',
-             backgroundColor:'green',
-             height: 225
+            
+             height: 225,
+           
            
              }}
            >

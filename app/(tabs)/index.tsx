@@ -36,6 +36,8 @@ export const Home = () =>{
           snapToInterval={width}
           snapToAlignment="start"
           decelerationRate='fast'
+      
+          
           
          
          >
